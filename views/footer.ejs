@@ -1,0 +1,67 @@
+	<script src="lib/js/head.min.js"></script>
+	<script src="components/reveal.js/js/reveal.js"></script>
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+			fragments: true,
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+			slideNumber: 'c/t',
+			// Optional reveal.js plugins
+			menu: {
+				themes: false,
+				transitions: false,
+				markers: true,
+				loadIcons: false
+			},
+			chalkboard: {
+				// theme: 'whiteboard',
+				// toggleChalkboardButton: false,
+				color: [ '#f7df1e', 'rgba(255,255,255,0.5)' ],
+				toggleChalkboardButton: { left: "60px", bottom: "30px", top: "auto", right: "auto" },
+				toggleNotesButton: { left: "91px", bottom: "30px", top: "auto", right: "auto" },
+			},
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				// Interpret Markdown in <section> elements
+        		{ src: './components/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        		{ src: './components/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: './components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: './components/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: './components/reveal.js/plugin/notes/notes.js', async: true },
+				{ src: './components/reveal.js/plugin/chalkboard/chalkboard.js' },
+				{ src: './components/reveal.js/node_modules/reveal.js-menu/menu.js' }
+			],
+			keyboard: {
+			    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+			    66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
+			    46: function() { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed
+			     8: function() { RevealChalkboard.reset() },	// reset chalkboard data on current slide when 'BACKSPACE' is pressed
+			    68: function() { RevealChalkboard.download() }	// downlad recorded chalkboard drawing when 'd' is pressed
+			}
+		});
+
+	</script>
+    <!-- Socket.io client-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+            (function(){
+              Reveal.initialize({
+                history: true
+              });
+              var proto = window.location.protocol;
+              var h = window.location.host;
+              var val = proto+'//'+h;
+              console.log(val);
+              var socket = io.connect(val);
+              socket.on('slidechanged', function (data) {
+                Reveal.slide(data.indexh, data.indexv, data.indexf);
+              });
+            })();
+        </script>
+</body>
+</html>

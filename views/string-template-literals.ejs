@@ -1,0 +1,83 @@
+<section id="es6-feature-template-literals">
+    <section id="template-literals">
+        <h3><span style="font-weight:bold;color:#333;background-color:yellow;">ES</span>6 Template Literals</h3>
+    </section>
+    <section id="template-literals-syntax-string-interpolation" data-menu-title="String interpolation">
+        <h3>Template Literals</h3>
+        <p>String interpolation</p>
+        <div class="fragment">
+            <pre><code class="javascript">
+    // ES5
+    var fullName = last + ', ' + first + ' ' + middleInitial;
+            </code></pre>
+        </div>
+        <div class="fragment">
+            <pre><code class="javascript">
+    // ES6
+    const fullName = `${last}, ${first} ${middleInitial}`;
+            </code></pre>
+        </div>
+    </section>
+    <section id="template-literals-syntax-multiline-strings" data-menu-title="Multi-line strings">
+        <h3>Template Literals</h3>
+        <p>Multi-line strings</p>
+        <div class="fragment">
+            <pre><code class="javascript">
+    // ES5
+    var message = '' +
+        'Dear Santa,\n' +
+        '    Cookies are insecure and have been removed.\n' +
+        'Sincerely,\n' +
+        'Little Timmy, CISSP'
+            </code></pre>
+        </div>
+        <div class="fragment">
+            <pre><code class="javascript">
+    // ES6
+    var message = `
+    Dear Santa,
+        Cookies are insecure and have been removed.
+    Sincerely,
+    Little Timmy, CISSP`
+            </code></pre>
+        </div>
+    </section>
+    <section id="template-literals-syntax-tagged-template-literals" data-menu-title="Tagged template literals">
+        <h3>Template Literals</h3>
+        <p>Tagged template literals</p>
+        <div class="fragment">
+            <pre><code class="javascript">
+    // No ES5 analog
+            </code></pre>
+        </div>
+        <div class="fragment">
+            <pre><code class="javascript">
+    const button = text => `<button>${text}</button>`;
+    console.log(button`push me`);// "<button>push me</button>"
+            </code></pre>
+        </div>
+        <div class="fragment">
+            <pre><code class="javascript">
+    const fix = (text, language) => {
+        const truth = 'JavaScript';
+        language = (language !== truth) ? truth : language;
+        return text[0] + language;
+    };
+    const thing = 'Java';
+    // apply tag function to template literal
+    console.log(fix`I love ${thing}`);// "I love JavaScript"
+            </code></pre>
+        </div>
+    </section>
+    <section id="template-literals-eslint-rules" style="text-align:left;">
+        <h3 style="text-align:center;margin-bottom:1em;"><span style="font-weight:bold;color:#333;background-color:yellow;">ES</span>Lint Rules for Template Literals</h3>
+        <pre><code class="javascript">
+    rules: {
+        'prefer-template': ['error']// autofix
+    }
+        </code></pre>
+        <ul style="padding-left:2em;">
+            <li><a href="https://eslint.org/docs/rules/prefer-template">prefer-template</a></li>
+        </ul>
+    </section>
+</section>

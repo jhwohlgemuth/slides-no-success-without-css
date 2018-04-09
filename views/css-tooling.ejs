@@ -1,0 +1,78 @@
+<section>
+    <section id="css-tooling" data-menu-title="CSS tooling" data-markdown>
+        ## ~~How Should I develop CSS?~~
+        ## How should I use [PostCSS](http://postcss.org/)?
+    </section>
+    <section id="postcss-everywhere" data-menu-title="PostCSS Everywhere" data-background-image="img/postcss-everywhere.jpg" data-background-size="cover"></section>
+    <section id="postcss" data-menu-title="PostCSS">
+        <img src="img/postcss.png" class="title-image" style="margin-bottom:0;" alt="PostCSS" height="150">
+        <h3>PostCSS</h3>
+        <p>A tool for transforming CSS with JavaScript</p>
+        <ul>
+            <li class="fragment">Find and fix CSS syntax errors with <a href="https://github.com/postcss/postcss-safe-parser">postcss-safe-parser</a></li>
+            <li class="fragment">Add vendor prefixes <i>auto-magically</i> with <a href="https://github.com/postcss/autoprefixer">autoprefixer</a></li>
+            <li class="fragment">Lint your stylesheets with <a href="https://stylelint.io/user-guide/postcss-plugin/">stylint</a></li>
+            <li class="fragment">Break up styles into separate files with <a href="https://github.com/postcss/postcss-import">postcss-import</a></li>
+            <li class="fragment">Use <i>tomorrow's</i> CSS <i><b>today</b></i> with <a href="http://cssnext.io/">postcss-cssnext</a></li>
+            <li class="fragment">Minimize your stylesheets with <a href="http://cssnano.co/">cssnano</a></li>
+        </ul>
+        <div>Review: <a href="https://jhwohlgemuth.github.io/slides-developing-with-node/">Developing with Node.js</a></div>
+    </section>
+    <section id="postcss-config" data-menu-title="PostCSS Configuration" data-background-image="img/postcss-config.svg" data-background-color="white" data-background-size="70%"></section>
+    <section id="postcss-complaints" data-menu-title="CSS is not puurrrrfect" data-background-image="img/angry-cat.jpg" data-background-size="contain"></section>
+    <section id="postcss-cure" data-menu-title="PostCSS is Awesome" data-markdown>
+        ### [PostCSS](http://postcss.org/) is the cure for many of today's CSS headaches
+    </section>
+    <section id="headache-vendor-prefixes" data-menu-title="Headache – Vendor Prefixes">
+        <h3>Stop Writing Vendor Prefixes</h3>
+        <table>
+            <tr>
+                <td><span style="color:red;font-weight:bold;">✗</span>Problem</td>
+                <td>Developers add prefixes we don't need and forget ones we do...</td>
+            </tr>
+            <tr class="fragment">
+                <td><span style="color:green;font-weight:bold;">✔</span>Solution</td>
+                <td>Add vendor prefixes dynamically for your <a href="http://browserl.ist/">target browser(s)</a> using <a href="http://cssnext.io/features/#automatic-vendor-prefixes">postcss-cssnext</a></td>
+            </tr>
+        </table>
+    </section>
+    <section id="headache-single-file-of-death" data-menu-title="Headache – Large Files">
+        <h3>Break up your files</h3>
+        <table>
+            <tr>
+                <td><span style="color:red;font-weight:bold;">✗</span>Problem</td>
+                <td><code>style.css</code> that scrolls for days...merge conflicts that make you question life choices</td>
+            </tr>
+            <tr class="fragment">
+                <td><span style="color:green;font-weight:bold;">✔</span>Solution</td>
+                <td>Design and implement a folder structure. Import CSS files "like JS modules" using <a href="https://github.com/postcss/postcss-import">postcss-import</a></td>
+            </tr>
+        </table>
+    </section>
+    <section id="headache-not-good-enough-yet" data-menu-title="Headache – New Features">
+        <h3>Start nesting classes!</h3>
+        <table>
+            <tr>
+                <td><span style="color:red;font-weight:bold;">✗</span>Problem</td>
+                <td>CSS <s>just kind of sucks</s> can be redundant</td>
+            </tr>
+            <tr class="fragment">
+                <td><span style="color:green;font-weight:bold;">✔</span>Solution</td>
+                <td>"DRY" up your CSS with nested classes and variables using <a href="http://cssnext.io/features">postcss-cssnext</a></td>
+            </tr>
+        </table>
+    </section>
+    <section id="headache-css-does-not-care-about-me" data-menu-title="Headache – CSS fails hard">
+        <h3>Make your CSS more robust</h3>
+        <table>
+            <tr>
+                <td><span style="color:red;font-weight:bold;">✗</span>Problem</td>
+                <td>CSS <s>just kind of sucks</s> tends to hide issues</td>
+            </tr>
+            <tr class="fragment">
+                <td><span style="color:green;font-weight:bold;">✔</span>Solution</td>
+                <td>Parse CSS with <a href="https://github.com/postcss/postcss-safe-parser">postcss-safe-parser</a> and lint CSS with <a href="https://stylelint.io/">stylelint</a></td>
+            </tr>
+        </table>
+    </section>
+</section>

@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="description" content="Brown Bag">
+	<meta name="author" content="Jason Wohlgemuth">
+	<title>You Cannot Spell "Success" Without CSS</title>
+	<!-- Font Awesome! -->
+	<link href="components/reveal.js/node_modules/reveal.js-menu/font-awesome-4.3.0/css/font-awesome.min.css?v=2" rel="stylesheet">
+	<link rel="stylesheet" href="components/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="components/reveal.js/css/theme/black.css" id="theme">
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<style>
+		@font-face {
+		    font-family: 'MK British Writing';
+		    src: url('lib/font/mk-british-writing.ttf') format('truetype');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+		span.fancy {
+			font-family: 'MK British Writing';
+			font-weight: normal;
+			opacity: 0.8;
+			text-transform: lowercase;
+			position: relative;
+			top: -0.1em;
+		}
+		.reveal section .title-image {
+			outline: none;
+			border: none;
+			background: none;
+			box-shadow: none;
+			margin: 0;
+		}
+	</style>
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? './components/reveal.js/css/print/pdf.css' : './components/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+<body>
+
+
+	<div class="reveal">
+	<div class="slides">
+		<section id="title" data-background-image="img/css.gif">
+			<h3>You Cannot Spell "Success" Without CSS</h3>
+			<p>An exploratory venture into modern CSS and the ecosystem that supports it</p>
+			<br /> <a href="https://twitter.com/@jhwohlgemuth">by Jason Wohlgemuth</a>
+		</section>
+		<section id="whoami" data-markdown data-menu-title="Who am I?" data-transition="convex">
+			<script type="text/template">
+				`whoami`
+				##### Jason Wohlgemuth
+				<img src="img/profile.jpg" class="img-circle img-responsive img-center profile" />
+				<br /> [
+				<i class="fa fa-twitter" aria-hidden="true"></i>/@jhwohlgemuth](https://twitter.com/@jhwohlgemuth)&nbsp;&nbsp;&nbsp;[<i class="fa fa-github" aria-hidden="true"></i>/jhwohlgemuth](https://github.com/jhwohlgemuth)<br />
+			</script>
+		</section>
+		<section id="work-at-bae" data-menu-title="5AD" data-background-color="#BAE" data-markdown>
+			# I work at `#BAE`
+		</section>
+		<section id="write-code" data-markdown data-menu-title="What do I do?" data-background-image="img/coding.gif" data-background-size="contain" data-transition="convex" data-markdown>
+			#i write code
+		</section>
+		<section id="css-is-awesome" data-menu-title="CSS is Awesome" data-background-image="img/css-is-awesome.png" data-background-size="60%" data-background-color="white"></section>
+		<section id="color-of-sadness" data-menu-title="CSS can make you 5AD" data-background-color="#5AD">
+			<h1 style="color:white;">CSS can make you <code>#5AD</code></h1>
+		</section>
+		<section id="css-can-be-rad" data-menu-title="CSS can be 2AD" data-background-color="#2AD">
+			<h1 style="color:white;">CSS can be <code>#2AD</code></h1>
+		</section>
+		<section id="questions" data-menu-title="Questions to answer">
+			<h1>Questions</h1>
+			<h3 class="fragment">What CSS <i>can</i> I use?</h3>
+			<h3 class="fragment">What CSS <i>should</i> I use?</h3>
+			<h3 class="fragment"><i>How</i> should I develop CSS?</h3>
+			<h3 class="fragment">What is CSS-in-JS?</h3>
+		</section>
+		<section>
+    <section id="what-css-can-I-use" data-menu-title="What CSS can I use?" data-background-iframe="https://caniuse.com"></section>
+    <section id="tip-browser-support" data-menu-title="Tip #1 – Verify Browser Support" data-markdown>
+        ### Tip #1
+        > Verify browser support with [caniuse.org](https://caniuse.com/#home)
+    </section>
+    <section id="tip-avoid-browser-specific-features" data-menu-title="Tip #2 – Avoid Browser-specific" data-markdown>
+        ### Tip #2
+        > Avoid Browser-specific Features
+    </section>
+    <section id="tip-avoid-not-enabled" data-menu-title="Tip #3 – Avoid Not Enabled" data-markdown>
+        ### Tip #3
+        > Avoid features disabled by default
+    </section>
+    <section id="failure-trifecta" data-menu-title="Example – Triple bad" data-background-iframe="https://caniuse.com/#search=scoped"></section>
+    <section id="tip-avoid-import" data-menu-title="Tip #4 – Avoid @import" data-markdown>
+        ### Tip #4
+        > [Avoid `@import`](http://www.stevesouders.com/blog/2009/04/09/dont-use-import/)
+    </section>
+    <section id="tip-hack-specificity" data-menu-title="Tip #5 – Hack specificity" data-markdown>
+        ### Tip #5
+        > Hack specificity with redundant chained classes
+
+        (debug only)
+    </section>
+    <section id="hack-specificity-example" data-menu-title="Example – Hack specificity" data-background-image="img/hack-specificity.svg" data-background-color="white" data-background-size="60%"></section>
+</section>
+
+		<section id="css-pun-lego" data-menu-title="CSS Pun: Lego" data-background-image="img/css-pun-lego.svg" data-background-color="white" data-background-size="60%"></section>
+
+		<section>
+    <section id="what-css-should-I-use" data-menu-title="What CSS should I use?" data-background-iframe="https://jonathantneal.github.io/cssdb/" data-background-color="white"></section>
+    <section id="css-stages">
+        <h3>CSS <a href="https://jonathantneal.github.io/cssdb/#staging-process">Stages</a></h3>
+        <table class="stretch">
+            <tr class="fragment">
+                <td>0</td>
+                <td>Aspirational</td>
+                <td>“Is my crazy idea.”</td>
+            </tr>
+            <tr class="fragment">
+                <td>1</td>
+                <td>Enthusiastic</td>
+                <td>“Is a crazy idea.”</td>
+            </tr>
+            <tr class="fragment">
+                <td>2</td>
+                <td>Experimental</td>
+                <td>“Might not be crazy.”</td>
+            </tr>
+            <tr class="fragment">
+                <td>3</td>
+                <td>Allowable</td>
+                <td>“Is not crazy.”</td>
+            </tr>
+            <tr class="fragment">
+                <td>4</td>
+                <td>Embraced</td>
+                <td>“Is becoming part of the web.”</td>
+            </tr>
+            <tr class="fragment">
+                <td>5</td>
+                <td>Standardized</td>
+                <td>“Is part of the web.”</td>
+            </tr>
+        </table>
+    </section>
+    <section id="tip-never-use-important" data-menu-title="Tip #6 – Never use !important" data-markdown>
+        ### Tip #6
+        > Never use `!important`
+    </section>
+    <section id="tip-prefer-classes" data-menu-title="Tip #7 – Prefer classes" data-markdown>
+        ### Tip #7
+        > Prefer classes
+
+        - ids are not re-useable
+        - ids should be unique, classes can be "composed"
+        - Handle specificity with nesting, scope, components, etc...
+    </section>
+    <section id="tip-have-standards" data-menu-title="Tip #8 – Have standards" data-markdown>
+        ### Tip #8
+        > Have standards
+
+        (see [stylelint](https://stylelint.io/))
+    </section>
+    <section id="tip-have-a-plan" data-menu-title="Tip #9 – Have a plan" data-markdown>
+        ### Tip #9
+        > Have a plan
+
+        (and apply [architectural principles](https://cssguidelin.es/#architectural-principles))
+    </section>
+    <section id="tip-create-a-styleguide" data-menu-title="Tip #10 – Create a Styleguide" data-markdown>
+        ### Tip #10
+        > Create a style guide
+
+        **Bonus**: Create a *living* style guide
+    </section>
+    <section id="bonus-living-styleguide" data-menu-title="Bonus – Living Styleguide" data-markdown>
+        ### Bonus – Use [mdcss](https://github.com/jonathantneal/mdcss)
+    </section>
+    <section id="mdcss-header-example" data-menu-title="Example – mdcss" data-background-image="img/mdcss-header-example.svg" data-background-color="white" data-background-size="60%"></section>
+</section>
+
+		<section id="css-pun-titantic" data-menu-title="CSS Pun: Titantic" data-background-image="img/css-pun-titantic.svg" data-background-color="white" data-background-size="60%"></section>
+
+		<section>
+    <section id="css-tooling" data-menu-title="CSS tooling" data-markdown>
+        ## ~~How Should I develop CSS?~~
+        ## How should I use [PostCSS](http://postcss.org/)?
+    </section>
+    <section id="postcss-everywhere" data-menu-title="PostCSS Everywhere" data-background-image="img/postcss-everywhere.jpg" data-background-size="cover"></section>
+    <section id="postcss" data-menu-title="PostCSS">
+        <img src="img/postcss.png" class="title-image" style="margin-bottom:0;" alt="PostCSS" height="150">
+        <h3>PostCSS</h3>
+        <p>A tool for transforming CSS with JavaScript</p>
+        <ul>
+            <li class="fragment">Find and fix CSS syntax errors with <a href="https://github.com/postcss/postcss-safe-parser">postcss-safe-parser</a></li>
+            <li class="fragment">Add vendor prefixes <i>auto-magically</i> with <a href="https://github.com/postcss/autoprefixer">autoprefixer</a></li>
+            <li class="fragment">Lint your stylesheets with <a href="https://stylelint.io/user-guide/postcss-plugin/">stylint</a></li>
+            <li class="fragment">Break up styles into separate files with <a href="https://github.com/postcss/postcss-import">postcss-import</a></li>
+            <li class="fragment">Use <i>tomorrow's</i> CSS <i><b>today</b></i> with <a href="http://cssnext.io/">postcss-cssnext</a></li>
+            <li class="fragment">Minimize your stylesheets with <a href="http://cssnano.co/">cssnano</a></li>
+        </ul>
+        <div>Review: <a href="https://jhwohlgemuth.github.io/slides-developing-with-node/">Developing with Node.js</a></div>
+    </section>
+    <section id="postcss-config" data-menu-title="PostCSS Configuration" data-background-image="img/postcss-config.svg" data-background-color="white" data-background-size="70%"></section>
+    <section id="postcss-complaints" data-menu-title="CSS is not puurrrrfect" data-background-image="img/angry-cat.jpg" data-background-size="contain"></section>
+    <section id="postcss-cure" data-menu-title="PostCSS is Awesome" data-markdown>
+        ### [PostCSS](http://postcss.org/) is the cure for many of today's CSS headaches
+    </section>
+    <section id="headache-vendor-prefixes" data-menu-title="Headache – Vendor Prefixes">
+        <h3>Stop Writing Vendor Prefixes</h3>
+        <table>
+            <tr>
+                <td><span style="color:red;font-weight:bold;">✗</span>Problem</td>
+                <td>Developers add prefixes we don't need and forget ones we do...</td>
+            </tr>
+            <tr class="fragment">
+                <td><span style="color:green;font-weight:bold;">✔</span>Solution</td>
+                <td>Add vendor prefixes dynamically for your <a href="http://browserl.ist/">target browser(s)</a> using <a href="http://cssnext.io/features/#automatic-vendor-prefixes">postcss-cssnext</a></td>
+            </tr>
+        </table>
+    </section>
+    <section id="headache-single-file-of-death" data-menu-title="Headache – Large Files">
+        <h3>Break up your files</h3>
+        <table>
+            <tr>
+                <td><span style="color:red;font-weight:bold;">✗</span>Problem</td>
+                <td><code>style.css</code> that scrolls for days...merge conflicts that make you question life choices</td>
+            </tr>
+            <tr class="fragment">
+                <td><span style="color:green;font-weight:bold;">✔</span>Solution</td>
+                <td>Design and implement a folder structure. Import CSS files "like JS modules" using <a href="https://github.com/postcss/postcss-import">postcss-import</a></td>
+            </tr>
+        </table>
+    </section>
+    <section id="headache-not-good-enough-yet" data-menu-title="Headache – New Features">
+        <h3>Start nesting classes!</h3>
+        <table>
+            <tr>
+                <td><span style="color:red;font-weight:bold;">✗</span>Problem</td>
+                <td>CSS <s>just kind of sucks</s> can be redundant</td>
+            </tr>
+            <tr class="fragment">
+                <td><span style="color:green;font-weight:bold;">✔</span>Solution</td>
+                <td>"DRY" up your CSS with nested classes and variables using <a href="http://cssnext.io/features">postcss-cssnext</a></td>
+            </tr>
+        </table>
+    </section>
+    <section id="headache-css-does-not-care-about-me" data-menu-title="Headache – CSS fails hard">
+        <h3>Make your CSS more robust</h3>
+        <table>
+            <tr>
+                <td><span style="color:red;font-weight:bold;">✗</span>Problem</td>
+                <td>CSS <s>just kind of sucks</s> tends to hide issues</td>
+            </tr>
+            <tr class="fragment">
+                <td><span style="color:green;font-weight:bold;">✔</span>Solution</td>
+                <td>Parse CSS with <a href="https://github.com/postcss/postcss-safe-parser">postcss-safe-parser</a> and lint CSS with <a href="https://stylelint.io/">stylelint</a></td>
+            </tr>
+        </table>
+    </section>
+</section>
+
+		<section id="css-pun-wife" data-menu-title="CSS Pun: Wife" data-background-image="img/css-pun-wife.svg" data-background-color="white" data-background-size="60%"></section>
+
+		<section id="es6-feature-template-literals">
+    <section id="template-literals">
+        <h3><span style="font-weight:bold;color:#333;background-color:yellow;">ES</span>6 Template Literals</h3>
+    </section>
+    <section id="template-literals-syntax-string-interpolation" data-menu-title="String interpolation">
+        <h3>Template Literals</h3>
+        <p>String interpolation</p>
+        <div class="fragment">
+            <pre><code class="javascript">
+    // ES5
+    var fullName = last + ', ' + first + ' ' + middleInitial;
+            </code></pre>
+        </div>
+        <div class="fragment">
+            <pre><code class="javascript">
+    // ES6
+    const fullName = `${last}, ${first} ${middleInitial}`;
+            </code></pre>
+        </div>
+    </section>
+    <section id="template-literals-syntax-multiline-strings" data-menu-title="Multi-line strings">
+        <h3>Template Literals</h3>
+        <p>Multi-line strings</p>
+        <div class="fragment">
+            <pre><code class="javascript">
+    // ES5
+    var message = '' +
+        'Dear Santa,\n' +
+        '    Cookies are insecure and have been removed.\n' +
+        'Sincerely,\n' +
+        'Little Timmy, CISSP'
+            </code></pre>
+        </div>
+        <div class="fragment">
+            <pre><code class="javascript">
+    // ES6
+    var message = `
+    Dear Santa,
+        Cookies are insecure and have been removed.
+    Sincerely,
+    Little Timmy, CISSP`
+            </code></pre>
+        </div>
+    </section>
+    <section id="template-literals-syntax-tagged-template-literals" data-menu-title="Tagged template literals">
+        <h3>Template Literals</h3>
+        <p>Tagged template literals</p>
+        <div class="fragment">
+            <pre><code class="javascript">
+    // No ES5 analog
+            </code></pre>
+        </div>
+        <div class="fragment">
+            <pre><code class="javascript">
+    const button = text => `<button>${text}</button>`;
+    console.log(button`push me`);// "<button>push me</button>"
+            </code></pre>
+        </div>
+        <div class="fragment">
+            <pre><code class="javascript">
+    const fix = (text, language) => {
+        const truth = 'JavaScript';
+        language = (language !== truth) ? truth : language;
+        return text[0] + language;
+    };
+    const thing = 'Java';
+    // apply tag function to template literal
+    console.log(fix`I love ${thing}`);// "I love JavaScript"
+            </code></pre>
+        </div>
+    </section>
+    <section id="template-literals-eslint-rules" style="text-align:left;">
+        <h3 style="text-align:center;margin-bottom:1em;"><span style="font-weight:bold;color:#333;background-color:yellow;">ES</span>Lint Rules for Template Literals</h3>
+        <pre><code class="javascript">
+    rules: {
+        'prefer-template': ['error']// autofix
+    }
+        </code></pre>
+        <ul style="padding-left:2em;">
+            <li><a href="https://eslint.org/docs/rules/prefer-template">prefer-template</a></li>
+        </ul>
+    </section>
+</section>
+
+		<section>
+    <section id="css-in-js" data-menu-title="CSS-in-JS" data-markdown>
+        ## CSS-in-JS
+        > Word of the day: **Component**
+    </section>
+    <section id="js-all-the-things" data-menu-title="JS All The Things!" data-background-image="img/all-the-things.png">
+        <h2 style="color:#333;">JS all the things</h2>
+        <h3 class="fragment" style="color:#333;">not really ;)</h3>
+        <br><br><br><br><br><br>
+    </section>
+    <section id="whats-wrong-with-css-in-css" data-menu-title="What's wrong with CSS-in-CSS?">
+        <h3>What's wrong with "CSS-in-CSS"?</h3>
+        <h3 class="fragment">Nothing.</h3>
+    </section>
+    <section id="you-do-you" data-menu-title="You do you" data-background-image="img/you-do-you.gif" data-background-size="contain"></section>
+    <section id="separation-of-concerns">
+        <h3>What about "separation of concerns"?</h3>
+        <div class="fragment">
+            <blockquote>
+                “Separation of concerns, not necessarily of technologies”
+            </blockquote>
+            – <a href="https://twitter.com/WebDevLuke">@WebDevLuke</a>
+        </div>
+    </section>
+    <section id="separation-of-concerns-diagram" data-menu-title="Separation of Concerns" data-background-image="img/separation-of-concerns.jpg" data-background-color="white" data-background-size="60%"></section>
+    <section id="inline-styles">
+        <h2>Aren't inline styles bad?</h2>
+        <h3 class="fragment">Pretty much.</h3>
+        <div class="fragment">
+            <h3>"CSS-in-JS" <code>≠</code> "inline styles"</h3>
+            <p>Read this: <a href="https://mxstbr.blog/2016/11/inline-styles-vs-css-in-js/">Writing your styles in JS ≠ writing inline styles</a></p>
+        </div>
+    </section>
+    <section id="react-components" data-menu-title="React Components">
+        <h2>React <span style="color:red;">❤</span> Components</h2>
+    </section>
+    <section id="css-in-js-trends" data-menu-title="CSS-in-JS Trends" data-background-image="img/npm-trends-css-in-js.png" data-background-color="white" data-background-size="70%"></section>
+    <section id="css-in-js-choices" data-menu-title="CSS-in-JS Choices" data-background-iframe="https://michelebertoli.github.io/css-in-js/" data-markdown>
+        [open](https://michelebertoli.github.io/css-in-js/)
+    </section>
+    <section id="web-components" data-menu-title="Web Components">
+        <h2>Everyone <span style="color:red;">❤</span> <i>Web</i> Components</h2>
+    </section>
+    <section id="web-component-style" data-menu-title="Web Component CSS-in-JS" data-background-image="img/web-component-style.svg" data-background-color="white" data-background-size="50%"></section>
+    <section id="live-demos" data-menu-title="Live Demos" data-markdown>
+        ### In-browser Live Demos
+        - [emotion](https://emotion.sh/docs/css)
+        - [styled-components](https://www.styled-components.com/)
+        - [aphrodite](https://output.jsbin.com/qoseye?code=%7B%0A%20%20%22red%22%3A%20%7B%0A%20%20%20%20%22backgroundColor%22%3A%20%22red%22%0A%20%20%7D%0A%7D)
+    </section>
+</section>
+
+		<section id="css-pun-muscle" data-menu-title="CSS Pun: Muscle" data-background-image="img/css-pun-muscle.svg" data-background-color="white" data-background-size="60%"></section>
+
+		<section id="references" data-background="img/web-surfing-time.gif" data-background-size="contain">
+			<h3>References</h3>
+			<div style="padding:20px;background-color:rgba(0,0,0,0.8);border-radius:20px;">
+				<ul>
+					<li><a href="https://jonathantneal.github.io/cssdb">What's next for CSS?</a></li>
+					<li><a href="https://caniuse.com">Can I use _____</a></li>
+					<li><a href="https://specificity.keegan.st">CSS specificity calculator</a></li>
+					<li><a href="http://apps.workflower.fi/vocabs/css/en">CSS Vocabulary</a></li>
+					<li><a href="https://cssguidelin.es/">CSS Guidelines</a></li>
+					<li><a href="http://michelebertoli.github.io/css-in-js/">CSS in JS comparison table</a></li>
+					<li><a href="https://hackernoon.com/all-you-need-to-know-about-css-in-js-984a72d48ebc">All You Need to Know About CSS-in-JS</a></li>
+					<li><a href="https://mxstbr.blog/2016/11/inline-styles-vs-css-in-js/">Writing your styles in JS ≠ writing inline styles</a></li>
+					<li><a href="https://saijogeorge.com/css-puns/">CSS Puns</a></li>
+					<li><a href="http://bada55.io">bada55.io</a></li>
+				</ul>
+			</div>
+		</section>
+	</div>
+</div>
+
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="components/reveal.js/js/reveal.js"></script>
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+			fragments: true,
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+			slideNumber: 'c/t',
+			// Optional reveal.js plugins
+			menu: {
+				themes: false,
+				transitions: false,
+				markers: true,
+				loadIcons: false
+			},
+			chalkboard: {
+				// theme: 'whiteboard',
+				// toggleChalkboardButton: false,
+				color: [ '#f7df1e', 'rgba(255,255,255,0.5)' ],
+				toggleChalkboardButton: { left: "60px", bottom: "30px", top: "auto", right: "auto" },
+				toggleNotesButton: { left: "91px", bottom: "30px", top: "auto", right: "auto" },
+			},
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				// Interpret Markdown in <section> elements
+        		{ src: './components/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        		{ src: './components/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: './components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: './components/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: './components/reveal.js/plugin/notes/notes.js', async: true },
+				{ src: './components/reveal.js/plugin/chalkboard/chalkboard.js' },
+				{ src: './components/reveal.js/node_modules/reveal.js-menu/menu.js' }
+			],
+			keyboard: {
+			    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+			    66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
+			    46: function() { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed
+			     8: function() { RevealChalkboard.reset() },	// reset chalkboard data on current slide when 'BACKSPACE' is pressed
+			    68: function() { RevealChalkboard.download() }	// downlad recorded chalkboard drawing when 'd' is pressed
+			}
+		});
+
+	</script>
+    <!-- Socket.io client-->
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script>
+            (function(){
+              Reveal.initialize({
+                history: true
+              });
+              var proto = window.location.protocol;
+              var h = window.location.host;
+              var val = proto+'//'+h;
+              console.log(val);
+              var socket = io.connect(val);
+              socket.on('slidechanged', function (data) {
+                Reveal.slide(data.indexh, data.indexv, data.indexf);
+              });
+            })();
+        </script>
+</body>
+</html>
+
